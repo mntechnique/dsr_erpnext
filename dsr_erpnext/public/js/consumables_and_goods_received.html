@@ -1,0 +1,42 @@
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-xs-12 text-right">
+		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+	</div>
+</div>
+<!-- href="/desk#Form/Vehicle/{{ customer_vehicle[i].license_plate }}"> -->
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Delivered By</th>
+					<th>Quantity</th>
+					<th>Used</th>
+					<th>Balance</th>
+					<th>Remarks</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% if (consumables.length == 0) { %}
+				<div class="col-md-12 col-xs-12">
+					<h2 class="text-muted text-center">No service records for this Customer.</h2>
+				</div>
+			{% } else { %}
+				{% for (var i=0, l=consumables.length; i<=l-1; i++) { %}
+
+					<tr>
+						<td>{{ consumables[i].item }}</td>
+						<td>{{ consumables[i].delivered_by }}</td>
+						<td>{{ consumables[i].qty }}</td>
+						<td>{{ consumables[i].qty_used }}</td>
+						<td>{{ consumables[i].qty_balance }}</td>	
+						<td>{{ consumables[i].remarks }}</td>
+					</tr>
+				{% } %}
+			{% } %}
+			</tbody>
+		</table>
+	</div>
+</div>

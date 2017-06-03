@@ -1,0 +1,43 @@
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-xs-12 text-right">
+		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+	</div>
+</div>
+<!-- href="/desk#Form/Vehicle/{{ customer_vehicle[i].license_plate }}"> -->
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+			<thead>
+				<tr>
+					<th>Work Alloted</th>
+					<th>No. of Personnel</th>
+					<th>Manpower Category(Dropdown)</th>
+					<th>Wage Calculation:Lumpsum/Rate</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% if (manpower.length == 0) { %}
+				<div class="col-md-12 col-xs-12">
+					<h2 class="text-muted text-center">No service records for this Customer.</h2>
+				</div>
+			{% } else { %}
+				{% for (var i=0, l=manpower.length; i<=l-1; i++) { %}
+
+					<tr>
+<!-- 						<td><a href="/desk#Form/Vehicle/{{ customer_vehicle[i].license_plate }}">{{ service_vehicle_details[i].license_plate }}</a></td>
+						<td>{{ service_vehicle_details[i].make }}</td>
+						<td>{{ service_vehicle_details[i].model }}</td>
+						<td>{{ service_vehicle_details[i].odometer_reading }}</td>
+						<td>{{ service_vehicle_details[i].tyre_pressure_fl }}</td>
+						<td>{{ service_vehicle_details[i].tyre_pressure_fr }}</td>
+						<td>{{ service_vehicle_details[i].tyre_pressure_rl }}</td>	
+						<td>{{ service_vehicle_details[i].tyre_pressure_rr }}</td>
+ -->					</tr>
+				
+				{% } %}
+			{% } %}
+			</tbody>
+		</table>
+	</div>
+</div>

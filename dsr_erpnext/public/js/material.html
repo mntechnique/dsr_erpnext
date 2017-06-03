@@ -1,0 +1,50 @@
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-xs-12 text-right">
+		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
+			<thead>
+				<tr>
+					<th>Hired/Owned Truck</th>
+					<th>Vehicle Number</th>
+					<th>Driver Name</th>
+					<th>Material Inwards/Outwards</th>
+					<th>Material</th>
+					<th>Time</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Tonnage</th>
+					<th>Rate</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			{% if (materials.length == 0) { %}
+				<div class="col-md-12 col-xs-12">
+					<h2 class="text-muted text-center">No service records for this Customer.</h2>
+				</div>
+			{% } else { %}
+				{% for (var i=0, l=materials.length; i<=l-1; i++) { %}
+					<tr>
+						<td>{{ materials[i].owned_truck }}</td>
+						<td><a href="/desk#Form/Vehicle/{{ materials[i].truck }}">{{ materials[i].truck }}</a></td>
+						<td>{{ materials[i].driver_name }}</td>
+						<td>{{ materials[i].material_direction }}</td>
+						<td>{{ materials[i].materials }}</td>
+						<td>{{ materials[i].time }}</td>
+						<td>{{ materials[i].from }}</td>	
+						<td>{{ materials[i].to }}</td>
+						<td>{{ materials[i].tonnage }}</td>
+						<td>{{ materials[i].rate }}</td>
+					</tr>
+				{% } %}
+			{% } %}
+			</tbody>
+		</table>
+	</div>
+</div>

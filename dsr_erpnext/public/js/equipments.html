@@ -1,0 +1,49 @@
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-xs-12 text-right">
+		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
+			<thead>
+				<tr>
+					<th>Hired/Owned Euipments</th>
+					<th>Equipment Type</th>
+					<th>Registration Number</th>
+					<th>Operator/Supplier Name</th>
+					<th>Opening Reading</th>
+					<th>Closing Reading</th>
+					<th>Total</th>
+					<th>Fuel Received</th>
+					<th>Remarks</th>						
+				</tr>
+			</thead>
+			<tbody>
+			{% if (equipments.length == 0) { %}
+				<div class="col-md-12 col-xs-12">
+					<h2 class="text-muted text-center">No service records for this Customer.</h2>
+				</div>
+			{% } else { %}
+				{% for (var i=0, l=equipments.length; i<=l-1; i++) { %}
+
+					<tr>
+						<td>{{ equipments[i].equipment }}</td>
+						<td>{{ equipments[i].equipment_type }}</td>
+						<td>{{ equipments[i].registration_no }}</td>
+						<td>{{ equipments[i].operator_name }}</td>
+						<td>{{ equipments[i].opening_reading }}</td>
+						<td>{{ equipments[i].closing_reading }}</td>	
+						<td>{{ equipments[i].total }}</td> 
+						<td>{{ equipments[i].fuel_received }}</td>	
+						<td>{{ equipments[i].remarks }}</td>						
+					</tr>
+				
+				{% } %}
+			{% } %}
+			</tbody>
+		</table>
+	</div>
+</div>

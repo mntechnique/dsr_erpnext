@@ -1,0 +1,10 @@
+{
+	"js/dsr.min.js": [
+		"public/js/manpower.html",
+		"public/js/material.html",
+		"public/js/equipments.html",
+		"public/js/consumables_and_goods_received.html",
+		"public/js/expense.html",
+		"public/js/particulars.html"
+	]
+}

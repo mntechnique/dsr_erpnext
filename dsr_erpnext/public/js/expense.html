@@ -1,0 +1,36 @@
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-12 col-xs-12 text-right">
+		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
+			<thead>
+				<tr>
+					<th>Expense Type</th>
+					<th>Particulars/Remarks</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% if (expenses.length == 0) { %}
+				<div class="col-md-12 col-xs-12">
+					<h2 class="text-muted text-center">No service records for this Customer.</h2>
+				</div>
+			{% } else { %}
+				{% for (var i=0, l=expenses.length; i<=l-1; i++) { %}
+
+					<tr>
+						<td>{{ expenses[i].expense_type }}</td>
+						<td>{{ expenses[i].particulars }}</td>	
+						<td>{{ expenses[i].amount }}</td>
+					</tr>
+				
+				{% } %}
+			{% } %}
+			</tbody>
+		</table>
+	</div>
+</div>
