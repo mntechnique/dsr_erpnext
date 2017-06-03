@@ -31,3 +31,13 @@ class DSRProjectWorkSheet(Document):
 		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.project})
 		return expense
 		
+	def	new_worklog(self,values):
+		worklog = frappe.new_doc("DSR Daily Project Work Log")
+		worklog.project_worksheet = values.get("project_worksheet")
+		worklog.work_particulars = values.get("work_particulars")
+		worklog.uom = values.get("uom")
+		worklog.total = values.get("total")
+		worklog.save()
+		frappe.db.commit()
+		msg = "New Daily Work Log Created"
+		return msg	
