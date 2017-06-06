@@ -7,10 +7,13 @@ frappe.ui.form.on('DSR Project Work Sheet', {
 		frm.set_df_property("sb_manpower", "hidden", frm.doc.__islocal ? 1:0);
 		frm.set_df_property("sb_equipments", "hidden", frm.doc.__islocal ? 1:0);
 		frm.set_df_property("sb_consumables", "hidden", frm.doc.__islocal ? 1:0);
+		frm.set_df_property("sb_material", "hidden", frm.doc.__islocal ? 1:0);
 		frm.set_df_property("sb_expenses", "hidden", frm.doc.__islocal ? 1:0);
 	},
 	project: function(frm) {
-		msgprint("Please save the worksheet before proceeding.");
+		if (frm.doc.project) {
+			msgprint("Please save the worksheet before proceeding.");
+		}
 	},
 	refresh: function(frm) {
 		if (frm.doc.project) {
@@ -18,6 +21,7 @@ frappe.ui.form.on('DSR Project Work Sheet', {
 			frm.set_df_property("sb_manpower", "hidden", frm.doc.__islocal ? 1:0);
 			frm.set_df_property("sb_equipments", "hidden", frm.doc.__islocal ? 1:0);
 			frm.set_df_property("sb_consumables", "hidden", frm.doc.__islocal ? 1:0);
+			frm.set_df_property("sb_material", "hidden", frm.doc.__islocal ? 1:0);
 			frm.set_df_property("sb_expenses", "hidden", frm.doc.__islocal ? 1:0);
 
 			get_particulars(frm);
