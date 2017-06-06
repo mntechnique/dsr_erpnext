@@ -3,6 +3,7 @@
  "allow_guest_to_view": 0, 
  "allow_import": 0, 
  "allow_rename": 0, 
+ "autoname": "PWS-.#####", 
  "beta": 0, 
  "creation": "2017-05-27 19:12:58.410793", 
  "custom": 0, 
@@ -38,9 +39,9 @@
    "read_only": 0, 
    "remember_last_selected_value": 0, 
    "report_hide": 0, 
-   "reqd": 0, 
+   "reqd": 1, 
    "search_index": 0, 
-   "set_only_once": 0, 
+   "set_only_once": 1, 
    "unique": 0
   }, 
   {
@@ -408,7 +409,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2017-06-03 19:43:34.420106", 
+ "modified": "2017-06-06 12:16:16.500907", 
  "modified_by": "Administrator", 
  "module": "DSR ERPNext", 
  "name": "DSR Project Work Sheet", 

@@ -4,7 +4,6 @@
 		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
@@ -23,9 +22,11 @@
 			</thead>
 			<tbody>
 			{% if (equipments.length == 0) { %}
-				<div class="col-md-12 col-xs-12">
-					<h2 class="text-muted text-center">No service records for this Customer.</h2>
-				</div>
+				<tr>
+					<td colspan="9" class="text-center">
+						<span class="text-muted text-center">No equipment usage logged yet.</span>
+					</td>
+				</tr>
 			{% } else { %}
 				{% for (var i=0, l=equipments.length; i<=l-1; i++) { %}
 

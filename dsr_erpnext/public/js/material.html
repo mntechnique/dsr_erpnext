@@ -4,7 +4,6 @@
 		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
@@ -25,9 +24,11 @@
 			<tbody>
 
 			{% if (materials.length == 0) { %}
-				<div class="col-md-12 col-xs-12">
-					<h2 class="text-muted text-center">No service records for this Customer.</h2>
-				</div>
+				<tr>
+					<td colspan="10" class="text-center">
+						<span class="text-muted">No material logs recorded yet.</span>
+					</td>
+				</tr>
 			{% } else { %}
 				{% for (var i=0, l=materials.length; i<=l-1; i++) { %}
 					<tr>

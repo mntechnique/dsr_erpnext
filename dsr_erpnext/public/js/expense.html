@@ -16,9 +16,11 @@
 			</thead>
 			<tbody>
 			{% if (expenses.length == 0) { %}
-				<div class="col-md-12 col-xs-12">
-					<h2 class="text-muted text-center">No service records for this Customer.</h2>
-				</div>
+				<tr>
+					<td colspan="3" class="text-center">
+						<span class="text-muted text-center">No expenses recorded yet.</span>
+					</td>
+				</tr>
 			{% } else { %}
 				{% for (var i=0, l=expenses.length; i<=l-1; i++) { %}
 

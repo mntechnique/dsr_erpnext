@@ -4,7 +4,6 @@
 		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
 	</div>
 </div>
-<!-- href="/desk#Form/Vehicle/{{ customer_vehicle[i].license_plate }}"> -->
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
@@ -20,9 +19,11 @@
 			</thead>
 			<tbody>
 			{% if (consumables.length == 0) { %}
-				<div class="col-md-12 col-xs-12">
-					<h2 class="text-muted text-center">No service records for this Customer.</h2>
-				</div>
+				<tr>
+					<td colspan="6">
+						<span class="text-muted text-center">No consumables tracked yet.</span>
+					</td>
+				</tr>
 			{% } else { %}
 				{% for (var i=0, l=consumables.length; i<=l-1; i++) { %}
 

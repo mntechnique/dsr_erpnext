@@ -8,7 +8,7 @@ from frappe.model.document import Document
 
 class DSRProjectWorkSheet(Document):
 	def get_work_log(self):
-		particulars = frappe.get_all("DSR Daily Project Work Log", fields=["*"], filters={"project_worksheet" : self.project})	
+		particulars = frappe.get_all("DSR Daily Project Work Log", fields=["*"], filters={"project_worksheet" : self.name})	
 		return particulars
 
 	def get_manpower(self):
@@ -33,11 +33,11 @@ class DSRProjectWorkSheet(Document):
 		
 	def	new_worklog(self,values):
 		worklog = frappe.new_doc("DSR Daily Project Work Log")
-		worklog.project_worksheet = values.get("project_worksheet")
+		worklog.project_worksheet = self.name
 		worklog.work_particulars = values.get("work_particulars")
 		worklog.uom = values.get("uom")
 		worklog.total = values.get("total")
 		worklog.save()
 		frappe.db.commit()
 		msg = "New Daily Work Log Created"
-		return msg	
+		return msg
