@@ -11,7 +11,6 @@
 			<thead>
 				<tr>
 					<th>Hired/Owned Truck</th>
-					<th>Vehicle Number</th>
 					<th>Driver Name</th>
 					<th>Material Inwards/Outwards</th>
 					<th>Material</th>
@@ -34,7 +33,6 @@
 				{% for (var i=0, l=materials.length; i<=l-1; i++) { %}
 					<tr>
 						<td>{{ materials[i].owned_truck }}</td>
-						<td>{{ materials[i].truck }}</a></td>
 						<td>{{ materials[i].driver_name }}</td>
 						<td>{{ materials[i].material_direction }}</td>
 						<td>{{ materials[i].materials }}</td>
