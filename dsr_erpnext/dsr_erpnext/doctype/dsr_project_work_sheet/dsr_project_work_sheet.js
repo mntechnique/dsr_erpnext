@@ -9,6 +9,8 @@ frappe.ui.form.on('DSR Project Work Sheet', {
 		frm.set_df_property("sb_consumables", "hidden", frm.doc.__islocal ? 1:0);
 		frm.set_df_property("sb_material", "hidden", frm.doc.__islocal ? 1:0);
 		frm.set_df_property("sb_expenses", "hidden", frm.doc.__islocal ? 1:0);
+
+		frm.set_value("log_date", frappe.datetime.get_today());
 	},
 	project: function(frm) {
 		if (frm.doc.project) {
@@ -132,7 +134,7 @@ function get_consumables(frm) {
 function get_expense(frm) {
 	frappe.call({
 		doc: frm.doc,
-		method: "get_expense",
+		method: "get_expenses",
 		callback: function(r) {
 			var wrapper = $(frm.fields_dict['expenses_html'].wrapper);
 			

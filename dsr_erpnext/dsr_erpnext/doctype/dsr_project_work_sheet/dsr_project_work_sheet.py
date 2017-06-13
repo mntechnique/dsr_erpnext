@@ -9,33 +9,35 @@ from frappe.model.document import Document
 class DSRProjectWorkSheet(Document):
 	def get_work_log(self):
 		particulars = frappe.get_all("DSR Daily Project Work Log", fields=["*"], filters={"project_worksheet" : self.name})	
-		return particulars
+		out = [p for p in particulars if p.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 
 	def get_manpower(self):
 		manpower = frappe.get_all("DSR Daily Manpower Log", fields=["*"], filters={"project_worksheet" : self.name})	
-		for x in xrange(1,10):
-			print("Manpower", manpower)
-		return manpower
+		out = [m for m in manpower if m.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 
 	def get_material(self):
 		materials = frappe.get_all("DSR Daily Material Log", fields=["*"], filters={"project_worksheet" : self.name})	
-		return materials
+		out = [m for m in materials if m.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 
 	def get_equipments(self):
 		equipments = frappe.get_all("DSR Daily Equipment Log", fields=["*"], filters={"project_worksheet" : self.name}) 
-		return equipments			
+		out = [e for e in equipments if e.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 
 	def get_consumables(self):
 		from erpnext.stock.stock_balance import get_balance_qty_from_sle
 
 		consumables = frappe.get_all("DSR Daily Consumables Log", fields=["*"], filters={"project_worksheet" : self.name}) 
-		return consumables
+		out = [c for c in consumables if c.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 
-
-
-	def get_expense(self):
+	def get_expenses(self):
 		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.name})
-		return expense
+		out = [e for e in expense if e.creation.date() == frappe.utils.getdate(self.log_date)]
+		return out
 		
 	def	new_worklog(self,values):
 		worklog = frappe.new_doc("DSR Daily Project Work Log")
@@ -117,4 +119,4 @@ class DSRProjectWorkSheet(Document):
 		expense.save()
 		frappe.db.commit()
 		msg = "New Expense Log Created"
-		return msg		
+		return msg
