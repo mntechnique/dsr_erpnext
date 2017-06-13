@@ -216,14 +216,14 @@ function create_new_material_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Material"),
 		fields: [
-			{fieldtype: "Link", fieldname: "truck", options:"Vehicle", label: __("Truck"), reqd: 1},
+			{fieldtype: "Link", fieldname: "truck", options:"Item", label: __("Truck"), reqd: 1},
 			{fieldtype: "Data", fieldname: "driver_name", label: __("Driver Name"), reqd: 1},
 			// ****************Below Fieldtype needs to be finalised****************
 			{fieldtype: "Select", fieldname: "material_direction", label: __("Material Direction"), reqd: 1, options: "\nInwards\nOutwards"},
 			{fieldtype: "Link", fieldname: "material", options:"Item", label: __("Material"), reqd: 1},
 			{fieldtype: "Datetime", fieldname: "time", label: __("Time"), reqd: 1},					
-			{fieldtype: "Link", options:"Warehouse", fieldname: "from", label: __("From"), reqd: 1},
-			{fieldtype: "Link", options:"Warehouse", fieldname: "to", label: __("To"), reqd: 1},
+			{fieldtype: "Link", options:"Warehouse", fieldname: "from_warehouse", label: __("From"), reqd: 1},
+			{fieldtype: "Link", options:"Warehouse", fieldname: "to_warehouse", label: __("To"), reqd: 1},
 			{fieldtype: "Float", fieldname: "tonnage", label: __("Tonnage"), reqd: 1},
 			{fieldtype: "Currency", fieldname: "rate", label: __("Rate"), reqd: 1},
 		]
@@ -253,16 +253,16 @@ function create_new_equipments_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Equipment"),
 		fields: [
-			{fieldtype: "Link", fieldname: "equipment", options:"Asset", label: __("Equipment"), reqd: 1},
+			{fieldtype: "Link", fieldname: "equipment", options:"Item", label: __("Equipment")},
 			// ****************Below Fieldtype needs to be finalised****************
-			{fieldtype: "Data", fieldname: "equipment_type", label: __("Equipment Type"), reqd: 1},
+			{fieldtype: "Select", fieldname: "equipment_type", label: __("Equipment Type"), reqd: 1, options: "Hired\nOwned"},
 			{fieldtype: "Data", fieldname: "registration_no", label: __("Registration No"), reqd: 1},
 			{fieldtype: "Link", fieldname: "operator_name", options:"Employee", label: __("Operator Name"), reqd: 1},
 			{fieldtype: "Float", fieldname: "opening_reading", label: __("Opening Reading"), reqd: 1},
 			{fieldtype: "Float", fieldname: "closing_reading", label: __("Closing Reading"), reqd: 1},					
 			{fieldtype: "Float", fieldname: "total", label: __("Total"), reqd: 1},					
 			{fieldtype: "Check", fieldname: "fuel_received", label: __("Fuel Received")},
-			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks"), reqd: 1}
+			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks")}
 		]
 	});
 
@@ -292,10 +292,10 @@ function create_new_consumables_log() {
 		fields: [
 			{fieldtype: "Link", fieldname: "item", options:"Item", label: __("Item"), reqd: 1},
 			{fieldtype: "Link", fieldname: "delivered_by", options:"Employee", label: __("Delivered By"), reqd: 1},
-			{fieldtype: "Float", fieldname: "qty", label: __("Quantity"), reqd: 1},
+			{fieldtype: "Float", fieldname: "qty", label: __("Quantity"), readonly: 1},
 			{fieldtype: "Float", fieldname: "qty_used", label: __("Quantity Used"), reqd: 1},
-			{fieldtype: "Float", fieldname: "qty_balance", label: __("Quantity Balance"), reqd: 1},
-			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks"), reqd: 1}
+			{fieldtype: "Float", fieldname: "qty_balance", label: __("Quantity Balance"), readonly: 1},
+			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks")}
 		]
 	});
 
@@ -323,7 +323,7 @@ function create_new_expense_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Expense"),
 		fields: [
-			{fieldtype: "Link", fieldname: "expense_type", options:"Item", label: __("Expense Type"), reqd: 1},
+			{fieldtype: "Link", fieldname: "expense_type", options:"Expense Claim Type", label: __("Expense Type"), reqd: 1},
 			{fieldtype: "Small Text", fieldname: "particulars", label: __("Particulars"), reqd: 1},
 			{fieldtype: "Currency", fieldname: "amount", label: __("Amount"), reqd: 1}
 		]

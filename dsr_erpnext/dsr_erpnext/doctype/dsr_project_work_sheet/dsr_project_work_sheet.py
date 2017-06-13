@@ -22,12 +22,16 @@ class DSRProjectWorkSheet(Document):
 		return materials
 
 	def get_equipments(self):
-		equipments = frappe.get_all("DSR Daily Equimpent Log", fields=["*"], filters={"project_worksheet" : self.name}) 
+		equipments = frappe.get_all("DSR Daily Equipment Log", fields=["*"], filters={"project_worksheet" : self.name}) 
 		return equipments			
 
 	def get_consumables(self):
+		from erpnext.stock.stock_balance import get_balance_qty_from_sle
+
 		consumables = frappe.get_all("DSR Daily Consumables Log", fields=["*"], filters={"project_worksheet" : self.name}) 
 		return consumables
+
+
 
 	def get_expense(self):
 		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.name})
@@ -64,9 +68,9 @@ class DSRProjectWorkSheet(Document):
 		material.material_direction = values.get("material_direction")
 		material.material = values.get("material")
 		material.time = values.get("time")
-		# material.from = values.get("from")
-		material.to = values.get("to")
-		material.tonage = values.get("tonnage")						
+		material.from_warehouse = values.get("from_warehouse")
+		material.to_warehouse = values.get("to_warehouse")
+		material.tonnage = values.get("tonnage")						
 		material.rate = values.get("rate")								
 		material.save()
 		frappe.db.commit()
