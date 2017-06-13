@@ -1,7 +1,8 @@
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12 col-xs-12 text-right">
-		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+		<button class="btn btn-xs btn-default btn-material-add">Add</button>
+		<button class="btn btn-xs btn-default btn-material-view-all">View All</button>
 	</div>
 </div>
 <div class="row">
@@ -33,7 +34,7 @@
 				{% for (var i=0, l=materials.length; i<=l-1; i++) { %}
 					<tr>
 						<td>{{ materials[i].owned_truck }}</td>
-						<td><a href="/desk#Form/Vehicle/{{ materials[i].truck }}">{{ materials[i].truck }}</a></td>
+						<td>{{ materials[i].truck }}</a></td>
 						<td>{{ materials[i].driver_name }}</td>
 						<td>{{ materials[i].material_direction }}</td>
 						<td>{{ materials[i].materials }}</td>

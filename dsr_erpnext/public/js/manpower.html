@@ -1,7 +1,8 @@
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12 col-xs-12 text-right">
-		<button class="btn btn-xs btn-default btn-vehicle">Add</button>
+		<button class="btn btn-xs btn-default btn-manpower-add">Add</button>
+		<button class="btn btn-xs btn-default btn-manpower-view-all">View All</button>
 	</div>
 </div>
 <div class="row">
@@ -26,15 +27,11 @@
 				{% for (var i=0, l=manpower.length; i<=l-1; i++) { %}
 
 					<tr>
-<!-- 						<td><a href="/desk#Form/Vehicle/{{ customer_vehicle[i].license_plate }}">{{ service_vehicle_details[i].license_plate }}</a></td>
-						<td>{{ service_vehicle_details[i].make }}</td>
-						<td>{{ service_vehicle_details[i].model }}</td>
-						<td>{{ service_vehicle_details[i].odometer_reading }}</td>
-						<td>{{ service_vehicle_details[i].tyre_pressure_fl }}</td>
-						<td>{{ service_vehicle_details[i].tyre_pressure_fr }}</td>
-						<td>{{ service_vehicle_details[i].tyre_pressure_rl }}</td>	
-						<td>{{ service_vehicle_details[i].tyre_pressure_rr }}</td>
- -->					</tr>
+						<td><button class="text-muted small" href=""><i class="fa fa-close"></i></button>{{ manpower[i].work_alloted }}</td>
+						<td>{{ manpower[i].no_of_personnel }}</td>
+						<td>{{ manpower[i].manpower_category }}</td>
+						<td>{{ manpower[i].wage_calculation }}</td>
+					</tr>
 				
 				{% } %}
 			{% } %}
