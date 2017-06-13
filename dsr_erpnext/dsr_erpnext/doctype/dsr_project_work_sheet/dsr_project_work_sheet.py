@@ -12,23 +12,25 @@ class DSRProjectWorkSheet(Document):
 		return particulars
 
 	def get_manpower(self):
-		manpower = frappe.get_all("DSR Daily Manpower Log", fields=["*"], filters={"project_worksheet" : self.project})	
+		manpower = frappe.get_all("DSR Daily Manpower Log", fields=["*"], filters={"project_worksheet" : self.name})	
+		for x in xrange(1,10):
+			print("Manpower", manpower)
 		return manpower
 
 	def get_material(self):
-		materials = frappe.get_all("DSR Daily Material Log", fields=["*"], filters={"project_worksheet" : self.project})	
+		materials = frappe.get_all("DSR Daily Material Log", fields=["*"], filters={"project_worksheet" : self.name})	
 		return materials
 
 	def get_equipments(self):
-		equipments = frappe.get_all("DSR Daily Equimpent Log", fields=["*"], filters={"project_worksheet" : self.project}) 
+		equipments = frappe.get_all("DSR Daily Equimpent Log", fields=["*"], filters={"project_worksheet" : self.name}) 
 		return equipments			
 
 	def get_consumables(self):
-		consumables = frappe.get_all("DSR Daily Consumables Log", fields=["*"], filters={"project_worksheet" : self.project}) 
+		consumables = frappe.get_all("DSR Daily Consumables Log", fields=["*"], filters={"project_worksheet" : self.name}) 
 		return consumables
 
 	def get_expense(self):
-		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.project})
+		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.name})
 		return expense
 		
 	def	new_worklog(self,values):

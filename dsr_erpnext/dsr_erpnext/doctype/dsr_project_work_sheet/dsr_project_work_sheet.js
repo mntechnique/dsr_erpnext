@@ -160,6 +160,7 @@ function create_new() {
 	});
 
 	dialog.set_primary_action(__("Save"), function() {
+		cur_dialog.get_primary_btn().attr('disabled', 'true');
 		var btn = this;
 		var values = dialog.get_values();
 		frappe.call({
@@ -172,6 +173,7 @@ function create_new() {
 				get_particulars(frm);
 				frappe.show_alert(r.message);
 				dialog.clear(); dialog.hide();
+				cur_dialog.get_primary_btn().attr('disabled', 'false');
 			}
 		})
 	});
@@ -215,10 +217,9 @@ function create_new_material_log() {
 		title: __("New Material"),
 		fields: [
 			{fieldtype: "Link", fieldname: "truck", options:"Vehicle", label: __("Truck"), reqd: 1},
-			{fieldtype: "Data", fieldname: "vehicle_no", label: __("Vehicle No"), reqd: 1},
 			{fieldtype: "Data", fieldname: "driver_name", label: __("Driver Name"), reqd: 1},
 			// ****************Below Fieldtype needs to be finalised****************
-			{fieldtype: "Data", fieldname: "material_direction", label: __("Material Direction"), reqd: 1},
+			{fieldtype: "Select", fieldname: "material_direction", label: __("Material Direction"), reqd: 1, options: "\nInwards\nOutwards"},
 			{fieldtype: "Link", fieldname: "material", options:"Item", label: __("Material"), reqd: 1},
 			{fieldtype: "Datetime", fieldname: "time", label: __("Time"), reqd: 1},					
 			{fieldtype: "Link", options:"Warehouse", fieldname: "from", label: __("From"), reqd: 1},
