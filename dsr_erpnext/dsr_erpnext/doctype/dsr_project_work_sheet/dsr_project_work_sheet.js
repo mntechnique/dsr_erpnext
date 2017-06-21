@@ -255,9 +255,11 @@ function create_new_equipments_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Equipment"),
 		fields: [
-			{fieldtype: "Link", fieldname: "equipment", options:"Item", label: __("Equipment")},
+			
 			// ****************Below Fieldtype needs to be finalised****************
-			{fieldtype: "Select", fieldname: "equipment_type", label: __("Equipment Type"), reqd: 1, options: "Hired\nOwned"},
+			{fieldtype: "Select", fieldname: "equipment_type", label: __("Equipment Type"), reqd: 1, options: "Hired\nOwned", default:"Hired"},
+			{fieldtype: "Link", fieldname: "equipment", options:"Item", label: __("Equipment")},
+			{fieldtype: "Link", fieldname: "equipment_owned", options:"Asset", label: __("Equipment")},
 			{fieldtype: "Data", fieldname: "registration_no", label: __("Registration No"), reqd: 1},
 			{fieldtype: "Link", fieldname: "operator_name", options:"Employee", label: __("Operator Name"), reqd: 1},
 			{fieldtype: "Float", fieldname: "opening_reading", label: __("Opening Reading"), reqd: 1},
@@ -266,6 +268,19 @@ function create_new_equipments_log() {
 			{fieldtype: "Check", fieldname: "fuel_received", label: __("Fuel Received")},
 			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks")}
 		]
+	});
+
+	dialog.fields_dict.equipment_owned.toggle(0);
+	
+	dialog.fields_dict.equipment_type.$input.on("change",function() {
+		if(dialog.fields_dict.equipment_type.$input.val() == "Hired"){
+				dialog.fields_dict.equipment_owned.toggle(0);
+				dialog.fields_dict.equipment.toggle(1);
+		}
+		else if(dialog.fields_dict.equipment_type.$input.val() == "Owned"){
+				dialog.fields_dict.equipment.toggle(0);
+				dialog.fields_dict.equipment_owned.toggle(1);
+		}
 	});
 
 	dialog.set_primary_action(__("Save"), function() {
