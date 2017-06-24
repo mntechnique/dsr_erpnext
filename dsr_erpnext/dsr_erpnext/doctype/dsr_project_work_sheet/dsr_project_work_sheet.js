@@ -191,7 +191,12 @@ function create_new_manpower() {
 		fields: [
 			{fieldtype: "Link", fieldname: "work_alloted", options:"Task", label: __("Work Alloted"), reqd: 1},
 			{fieldtype: "Int", fieldname: "no_of_personnel", label: __("No of personnel"), reqd: 1},
-			{fieldtype: "Link", fieldname: "manpower_category", options:"Workstation", label: __("Manpower Category"), reqd: 1},
+			{fieldtype: "Link", fieldname: "manpower_category_item", options:"Item", label: __("Manpower Category"), reqd: 1,
+			"get_query": function () {
+					return {
+						filters: {"item_group": "Manpower Item"}
+					}
+				}},
 			{fieldtype: "Data", fieldname: "wage_calculation", label: __("Wage Calculation"), reqd: 1}
 		]
 	});

@@ -57,7 +57,7 @@ class DSRProjectWorkSheet(Document):
 		manpower.project_worksheet = self.name
 		manpower.work_alloted = values.get("work_alloted")
 		manpower.no_of_personnel = values.get("no_of_personnel")
-		manpower.manpower_category = values.get("manpower_category")
+		manpower.manpower_category_item = values.get("manpower_category_item")
 		manpower.wage_calculation = values.get("wage_calculation")
 		manpower.save()
 		frappe.db.commit()
