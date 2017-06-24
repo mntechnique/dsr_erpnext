@@ -13,6 +13,7 @@
 					<th>Item</th>
 					<th>Delivered By</th>
 					<th>Quantity</th>
+					<th>UOM</th>
 					<th>Used</th>
 					<th>Balance</th>
 					<th>Remarks</th>
@@ -21,7 +22,7 @@
 			<tbody>
 			{% if (consumables.length == 0) { %}
 				<tr>
-					<td colspan="6" class="text-center">
+					<td colspan="7" class="text-center">
 						<span class="text-muted">No consumables tracked yet.</span>
 					</td>
 				</tr>
@@ -32,6 +33,7 @@
 						<td>{{ consumables[i].item }}</td>
 						<td>{{ consumables[i].delivered_by }}</td>
 						<td>{{ consumables[i].qty }}</td>
+						<td>{{ consumables[i].uom }}</td>
 						<td>{{ consumables[i].qty_used }}</td>
 						<td>{{ consumables[i].qty_balance }}</td>	
 						<td>{{ consumables[i].remarks }}</td>

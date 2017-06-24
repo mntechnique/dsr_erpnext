@@ -364,6 +364,7 @@ function create_new_consumables_log() {
 			{fieldtype: "Link", fieldname: "item", options:"Item", label: __("Item"), reqd: 1},
 			{fieldtype: "Link", fieldname: "delivered_by", options:"Employee", label: __("Delivered By"), reqd: 1},
 			{fieldtype: "Float", fieldname: "qty", label: __("Quantity"), readonly: 1},
+			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), readonly: 1},
 			{fieldtype: "Float", fieldname: "qty_used", label: __("Quantity Used"), reqd: 1},
 			{fieldtype: "Float", fieldname: "qty_balance", label: __("Quantity Balance"), readonly: 1},
 			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks")}

@@ -108,6 +108,7 @@ class DSRProjectWorkSheet(Document):
 		consumables.item = values.get("item")
 		consumables.delivered_by = values.get("delivered_by")
 		consumables.qty = values.get("qty")
+		consumables.uom = values.get("uom")
 		consumables.qty_used = values.get("qty_used")
 		consumables.qty_balance = values.get("qty_balance")
 		consumables.remarks = values.get("remarks")								
