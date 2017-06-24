@@ -14,12 +14,13 @@
 					<th>Work Particulars</th>
 					<th>UOM</th>
 					<th>Total</th>
+					<th>Remarks</th>
 				</tr>
 			</thead>
 			<tbody>
 			{% if (particulars.length == 0) { %}
 				<tr>
-					<td colspan="4" class="text-center">
+					<td colspan="5" class="text-center">
 						<span class="text-muted">No work particulars recorded yet.</span>
 					</td>
 				</tr>
@@ -30,6 +31,7 @@
 						<td>{{ particulars[i].work_particulars }}</td>
 						<td>{{ particulars[i].uom }}</td>
 						<td class="text-right">{{ particulars[i].total }}</td>
+						<td>{{ particulars[i].remarks }}</td>
 					</tr>
 				{% } %}
 			{% } %}

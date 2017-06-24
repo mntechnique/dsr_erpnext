@@ -46,6 +46,7 @@ class DSRProjectWorkSheet(Document):
 		worklog.work_particulars = values.get("work_particulars")
 		worklog.uom = values.get("uom")
 		worklog.total = values.get("total")
+		worklog.remarks = values.get("remarks")
 		worklog.save()
 		frappe.db.commit()
 		msg = "New Daily Work Log Created"
