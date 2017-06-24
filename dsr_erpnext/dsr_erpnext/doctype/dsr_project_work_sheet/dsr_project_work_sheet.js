@@ -223,6 +223,20 @@ function create_new_manpower() {
 		}
 	});
 
+	dialog.fields_dict.quantity.$input.on("change",function() {
+		var rate = dialog.fields_dict.rate.$input.val();
+		var quantity = dialog.fields_dict.quantity.$input.val();
+		var total = product_rate_qty(rate,quantity);
+		cur_dialog.set_value("total",total);
+	});
+
+	dialog.fields_dict.rate.$input.on("change",function() {
+		var rate = dialog.fields_dict.rate.$input.val();
+		var quantity = dialog.fields_dict.quantity.$input.val();
+		var total = product_rate_qty(rate,quantity);
+		cur_dialog.set_value("total",total);
+	});
+
 	dialog.set_primary_action(__("Save"), function() {
 		var btn = this;
 		var values = dialog.get_values();
@@ -418,4 +432,8 @@ function create_new_expense_log() {
 		})
 	});
 	dialog.show();
+}
+
+function product_rate_qty(rate, qty) {
+	return rate * qty;
 }
