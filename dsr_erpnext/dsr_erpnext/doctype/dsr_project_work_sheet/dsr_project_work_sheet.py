@@ -59,6 +59,10 @@ class DSRProjectWorkSheet(Document):
 		manpower.no_of_personnel = values.get("no_of_personnel")
 		manpower.manpower_category_item = values.get("manpower_category_item")
 		manpower.wage_calculation = values.get("wage_calculation")
+		manpower.rate = values.get("rate")
+		manpower.uom = values.get("uom")
+		manpower.quantity = values.get("quantity")
+		manpower.total = values.get("total")
 		manpower.save()
 		frappe.db.commit()
 		msg = "New Manpower Log Created"

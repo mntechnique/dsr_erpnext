@@ -196,9 +196,31 @@ function create_new_manpower() {
 					return {
 						filters: {"item_group": "Manpower Item"}
 					}
-				}},
-			{fieldtype: "Data", fieldname: "wage_calculation", label: __("Wage Calculation"), reqd: 1}
+				}
+			},
+			{fieldtype: "Select", fieldname: "wage_calculation", label: __("Wage Calculation"), reqd: 1, options: "Lumpsum\nRate", default: "Lumpsum"},
+			{fieldtype: "Currency", fieldname: "rate", label: __("Rate"), reqd: 1},
+			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), reqd: 1},
+			{fieldtype: "Float", fieldname: "quantity", label: __("Quantity"), reqd: 1},
+			{fieldtype: "Currency", fieldname: "total", label: __("Total"), reqd: 1},
 		]
+	});
+	dialog.fields_dict.rate.toggle(0);
+	dialog.fields_dict.uom.toggle(0);
+	dialog.fields_dict.quantity.toggle(0);
+
+	dialog.fields_dict.wage_calculation.$input.on("change",function() {
+		if(dialog.fields_dict.wage_calculation.$input.val() == "Lumpsum"){
+				dialog.fields_dict.rate.toggle(0);
+				dialog.fields_dict.uom.toggle(0);
+				dialog.fields_dict.quantity.toggle(0);
+				dialog.fields_dict.total.toggle(1);
+		}
+		else if(dialog.fields_dict.wage_calculation.$input.val() == "Rate"){
+				dialog.fields_dict.rate.toggle(1);
+				dialog.fields_dict.uom.toggle(1);
+				dialog.fields_dict.quantity.toggle(1);		
+		}
 	});
 
 	dialog.set_primary_action(__("Save"), function() {

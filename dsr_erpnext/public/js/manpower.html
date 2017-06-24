@@ -14,12 +14,16 @@
 					<th>No. of Personnel</th>
 					<th>Manpower Category</th>
 					<th>Wage Calculation:Lumpsum/Rate</th>
+					<th>Rate</th>
+					<th>UOM</th>
+					<th>Quantity</th>
+					<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
 			{% if (manpower.length == 0) { %}
 				<tr>
-					<td colspan="4" class="text-center">
+					<td colspan="8" class="text-center">
 						<span class="text-muted text-center">No manpower Logs recorded yet.</span>
 					</td>
 				</tr>
@@ -31,6 +35,10 @@
 						<td>{{ manpower[i].no_of_personnel }}</td>
 						<td>{{ manpower[i].manpower_category_item }}</td>
 						<td class="text-right">{{ manpower[i].wage_calculation }}</td>
+						<td>{{ manpower[i].rate }}</td>
+						<td>{{ manpower[i].uom }}</td>
+						<td>{{ manpower[i].quantity }}</td>
+						<td>{{ manpower[i].total }}</td>
 					</tr>
 				
 				{% } %}
