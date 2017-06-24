@@ -10,6 +10,7 @@
 		<table class="table table-bordered table-striped table-hover table-condensed table-responsive small">
 			<thead>
 				<tr>
+					<th>Location</th>
 					<th>Work Particulars</th>
 					<th>UOM</th>
 					<th>Total</th>
@@ -18,13 +19,14 @@
 			<tbody>
 			{% if (particulars.length == 0) { %}
 				<tr>
-					<td colspan="3" class="text-center">
+					<td colspan="4" class="text-center">
 						<span class="text-muted">No work particulars recorded yet.</span>
 					</td>
 				</tr>
 			{% } else { %}
 				{% for (var i=0, l=particulars.length; i<=l-1; i++) { %}
 					<tr>
+						<td>{{ particulars[i].location }}</td>
 						<td>{{ particulars[i].work_particulars }}</td>
 						<td>{{ particulars[i].uom }}</td>
 						<td class="text-right">{{ particulars[i].total }}</td>

@@ -42,6 +42,7 @@ class DSRProjectWorkSheet(Document):
 	def	new_worklog(self,values):
 		worklog = frappe.new_doc("DSR Daily Project Work Log")
 		worklog.project_worksheet = self.name
+		worklog.location = values.get("location")
 		worklog.work_particulars = values.get("work_particulars")
 		worklog.uom = values.get("uom")
 		worklog.total = values.get("total")

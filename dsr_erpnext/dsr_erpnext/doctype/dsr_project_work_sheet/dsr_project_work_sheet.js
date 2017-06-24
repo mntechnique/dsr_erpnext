@@ -155,6 +155,7 @@ function create_new() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Particulars"),
 		fields: [
+			{fieldtype: "Link", fieldname: "location", options:"Territory", label: __("Location"), reqd: 1},
 			{fieldtype: "Data", fieldname: "work_particulars", label: __("Work Particulars"), reqd: 1},
 			{fieldtype: "Link", fieldname: "uom", options:"UOM", label: __("UOM"), reqd: 1},
 			{fieldtype: "Currency", fieldname: "total", label: __("Total"), reqd: 1}
