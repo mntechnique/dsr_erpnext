@@ -155,7 +155,7 @@ function create_new() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Particulars"),
 		fields: [
-			{fieldtype: "Link", fieldname: "location", options:"Territory", label: __("Location"), reqd: 1},
+			{fieldtype: "Link", fieldname: "location", options:"Warehouse", label: __("Location"), reqd: 1},
 			{fieldtype: "Data", fieldname: "work_particulars", label: __("Work Particulars"), reqd: 1},
 			{fieldtype: "Link", fieldname: "uom", options:"UOM", label: __("UOM"), reqd: 1},
 			{fieldtype: "Currency", fieldname: "total", label: __("Total"), reqd: 1},
@@ -199,9 +199,9 @@ function create_new_manpower() {
 				}
 			},
 			{fieldtype: "Select", fieldname: "wage_calculation", label: __("Wage Calculation"), reqd: 1, options: "Lumpsum\nRate", default: "Lumpsum"},
-			{fieldtype: "Currency", fieldname: "rate", label: __("Rate"), reqd: 1},
-			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), reqd: 1},
-			{fieldtype: "Float", fieldname: "quantity", label: __("Quantity"), reqd: 1},
+			{fieldtype: "Currency", fieldname: "rate", label: __("Rate")},
+			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), options: "UOM"},
+			{fieldtype: "Float", fieldname: "quantity", label: __("Quantity")},
 			{fieldtype: "Currency", fieldname: "total", label: __("Total"), reqd: 1},
 		]
 	});
@@ -210,17 +210,36 @@ function create_new_manpower() {
 	dialog.fields_dict.quantity.toggle(0);
 
 	dialog.fields_dict.wage_calculation.$input.on("change",function() {
-		if(dialog.fields_dict.wage_calculation.$input.val() == "Lumpsum"){
-				dialog.fields_dict.rate.toggle(0);
-				dialog.fields_dict.uom.toggle(0);
-				dialog.fields_dict.quantity.toggle(0);
-				dialog.fields_dict.total.toggle(1);
-		}
-		else if(dialog.fields_dict.wage_calculation.$input.val() == "Rate"){
-				dialog.fields_dict.rate.toggle(1);
-				dialog.fields_dict.uom.toggle(1);
-				dialog.fields_dict.quantity.toggle(1);		
-		}
+		toggle_manpower_fields_by_wage_calculation_mode(dialog);
+		// if(dialog.fields_dict.wage_calculation.$input.val() == "Lumpsum"){
+		// 	var rate = dialog.get_field("rate");
+		// 	rate.df.reqd = 0;
+		// 	rate.df.hidden = 1;
+		// 	rate.refresh();
+
+		// 		// dialog.fields_dict.rate.toggle(0); 
+		// 		// dialog.fields_dict.uom.toggle(0); 
+		// 		// dialog.fields_dict.quantity.toggle(0); dialog.fields_dict.quantity.set_mandatory(0);
+		// 		// dialog.fields_dict.total.toggle(1);
+
+		// 		// dialog.fields_dict.rate.set_mandatory(0);dialog.fields_dict.rate.refresh();
+		// 		// dialog.fields_dict.uom.set_mandatory(0);dialog.fields_dict.uom.refresh();
+		// 		// dialog.fields_dict.quantity.set_mandatory(0);dialog.fields_dict.quantity.refresh();
+		// }
+		// else if(dialog.fields_dict.wage_calculation.$input.val() == "Rate"){
+		// 	var rate = dialog.get_field("rate");
+		// 	rate.df.reqd = 1;
+		// 	rate.df.hidden = 0;
+		// 	rate.refresh();
+
+		// 		// dialog.fields_dict.rate.toggle(1); 
+		// 		// dialog.fields_dict.uom.toggle(1); 
+		// 		// dialog.fields_dict.quantity.toggle(1); 
+				
+		// 		// dialog.fields_dict.rate.set_mandatory();dialog.fields_dict.rate.refresh();
+		// 		// dialog.fields_dict.uom.set_mandatory();dialog.fields_dict.uom.refresh();
+		// 		// dialog.fields_dict.quantity.set_mandatory();dialog.fields_dict.quantity.refresh();
+		// }
 	});
 
 	dialog.fields_dict.quantity.$input.on("change",function() {
@@ -261,8 +280,6 @@ function create_new_material_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Material"),
 		fields: [
-			
-			
 			{fieldtype: "Select", fieldname: "material_direction", label: __("Material Direction"), reqd: 1, options: "\nInwards\nOutwards"},
 			{fieldtype: "Select", fieldname: "truck_type", label: __("Truck Type"), reqd: 1, options: "Hired\nOwned", default:"Hired"},
 			{fieldtype: "Link", fieldname: "truck", options:"Item", label: __("Truck (Hired)"), reqd: 1,
@@ -318,8 +335,6 @@ function create_new_equipments_log() {
 	var dialog = new frappe.ui.Dialog({
 		title: __("New Equipment"),
 		fields: [
-			
-			
 			{fieldtype: "Select", fieldname: "equipment_type", label: __("Equipment Type"), reqd: 1, options: "Hired\nOwned", default:"Hired"},
 			{fieldtype: "Link", fieldname: "equipment", options:"Item", label: __("Equipment (Hired)"),
 				"get_query": function () {
@@ -436,4 +451,23 @@ function create_new_expense_log() {
 
 function product_rate_qty(rate, qty) {
 	return rate * qty;
+}
+
+function toggle_manpower_fields_by_wage_calculation_mode(dialog) {
+	var wage_calculation_mode = dialog.fields_dict.wage_calculation.$input.val();
+
+	var rate = dialog.get_field("rate");
+	var uom = dialog.get_field("uom");
+	var quantity = dialog.get_field("quantity");
+
+	if(wage_calculation_mode == "Lumpsum"){
+		rate.df.reqd = 0; rate.df.hidden = 1; rate.refresh();
+		uom.df.reqd = 0; uom.df.hidden = 1; uom.refresh();
+		quantity.df.reqd = 0; quantity.df.hidden = 1; quantity.refresh();
+
+	} else if (wage_calculation_mode == "Rate") {
+		rate.df.reqd = 1; rate.df.hidden = 0; rate.refresh();
+		uom.df.reqd = 1; uom.df.hidden = 0; uom.refresh();
+		quantity.df.reqd = 1; quantity.df.hidden = 0; quantity.refresh();
+	}
 }
