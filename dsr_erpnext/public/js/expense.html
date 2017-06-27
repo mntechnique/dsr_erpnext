@@ -1,10 +1,10 @@
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-3 col-xs-3">
-		<label>Opening Balance</label>
+		<label>Opening Balance: </label> {{ expenses["opening_balance"] || "N/A" }}
 	</div>
 	<div class="col-md-3 col-xs-3">
-		<label>Advance Received</label>
+		<label>Advance Received: </label> {{ expenses["advance_received"] || "N/A" }}
 	</div>
 	<div class="col-md-6 col-xs-6 text-right">
 		<button class="btn btn-xs btn-default btn-expense-add">Add</button>
@@ -29,12 +29,11 @@
 					</td>
 				</tr>
 			{% } else { %}
-				{% for (var i=0, l=expenses.length; i<=l-1; i++) { %}
-
+				{% for (var i=0, l=expenses["expense_logs"].length; i<=l-1; i++) { %}
 					<tr>
-						<td>{{ expenses[i].expense_type }}</td>
-						<td>{{ expenses[i].particulars }}</td>	
-						<td class="text-right">{{ expenses[i].amount }}</td>
+						<td>{{ expenses["expense_logs"][i].expense_type }}</td>
+						<td>{{ expenses["expense_logs"][i].particulars }}</td>	
+						<td class="text-right">{{ expenses["expense_logs"][i].amount }}</td>
 					</tr>
 				
 				{% } %}

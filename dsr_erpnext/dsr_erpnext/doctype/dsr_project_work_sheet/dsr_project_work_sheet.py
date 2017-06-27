@@ -36,7 +36,11 @@ class DSRProjectWorkSheet(Document):
 
 	def get_expenses(self):
 		expense = frappe.get_all("DSR Daily Expense Log", fields=["*"], filters={"project_worksheet" : self.name})
-		out = [e for e in expense if e.creation.date() == frappe.utils.getdate(self.log_date)]
+		out = {
+			"expense_logs": [e for e in expense if e.creation.date() == frappe.utils.getdate(self.log_date)],
+			"opening_balance": 4000.00,
+			"advance_received": 2000.00
+		}	
 		return out
 		
 	def	new_worklog(self,values):

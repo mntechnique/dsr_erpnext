@@ -301,14 +301,15 @@ function create_new_material_log() {
 	dialog.fields_dict.truck_owned.toggle(0);
 	
 	dialog.fields_dict.truck_type.$input.on("change",function() {
-		if(dialog.fields_dict.truck_type.$input.val() == "Hired"){
-				dialog.fields_dict.truck_owned.toggle(0);
-				dialog.fields_dict.truck.toggle(1);
-		}
-		else if(dialog.fields_dict.truck_type.$input.val() == "Owned"){
-				dialog.fields_dict.truck.toggle(0);
-				dialog.fields_dict.truck_owned.toggle(1);
-		}
+		toggle_material_fields_by_truck_type(dialog);
+		// if(dialog.fields_dict.truck_type.$input.val() == "Hired"){
+		// 		dialog.fields_dict.truck_owned.toggle(0);
+		// 		dialog.fields_dict.truck.toggle(1);
+		// }
+		// else if(dialog.fields_dict.truck_type.$input.val() == "Owned"){
+		// 		dialog.fields_dict.truck.toggle(0);
+		// 		dialog.fields_dict.truck_owned.toggle(1);
+		// }
 	});
 
 	dialog.set_primary_action(__("Save"), function() {
@@ -393,7 +394,7 @@ function create_new_consumables_log() {
 			{fieldtype: "Link", fieldname: "item", options:"Item", label: __("Item"), reqd: 1},
 			{fieldtype: "Link", fieldname: "delivered_by", options:"Employee", label: __("Delivered By"), reqd: 1},
 			{fieldtype: "Float", fieldname: "qty", label: __("Quantity"), readonly: 1},
-			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), readonly: 1},
+			{fieldtype: "Link", fieldname: "uom", label: __("UOM"), options: "UOM", readonly: 1},
 			{fieldtype: "Float", fieldname: "qty_used", label: __("Quantity Used"), reqd: 1},
 			{fieldtype: "Float", fieldname: "qty_balance", label: __("Quantity Balance"), readonly: 1},
 			{fieldtype: "Small Text", fieldname: "remarks", label: __("Remarks")}
@@ -469,5 +470,22 @@ function toggle_manpower_fields_by_wage_calculation_mode(dialog) {
 		rate.df.reqd = 1; rate.df.hidden = 0; rate.refresh();
 		uom.df.reqd = 1; uom.df.hidden = 0; uom.refresh();
 		quantity.df.reqd = 1; quantity.df.hidden = 0; quantity.refresh();
+	}
+}
+
+function toggle_material_fields_by_truck_type(dialog) {
+	var truck_type = dialog.fields_dict.truck_type.$input.val();
+
+	console.log("Truck Type", truck_type);
+
+	var truck = dialog.get_field("truck");
+	var truck_owned = dialog.get_field("truck_owned");
+	
+	if(truck_type == "Hired"){
+		truck.df.reqd = 1; truck.df.hidden = 0; truck.refresh();
+		truck_owned.df.reqd = 0; truck_owned.df.hidden = 1; truck_owned.refresh();
+	} else if (truck_type == "Owned") {
+		truck.df.reqd = 0; truck.df.hidden = 1; truck.refresh();
+		truck_owned.df.reqd = 1; truck_owned.df.hidden = 0; truck_owned.refresh();
 	}
 }
